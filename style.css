@@ -1,4 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap');
+
+/* =========================
+   PALETA E FONTES
+   (mude aqui para ajustar o site todo)
+========================= */
+
+:root {
+    --ink: #0d1b20;
+    --ink-soft: #15282f;
+    --bone: #eef0ea;
+    --tile: #dfe4dc;
+    --text: #e9ede8;
+    --muted: #9fb1b3;
+    --muted-dark: #4d5f63;
+    --amber: #f2a93b;
+    --amber-hover: #ffbd5c;
+    --line: rgba(233, 237, 232, 0.16);
+
+    --font-display: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+}
 
 * {
     margin: 0;
@@ -8,12 +29,20 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 82px;
 }
 
 body {
-    font-family: 'Inter', Arial, sans-serif;
-    background: #ffffff;
-    color: #111111;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    background: var(--bone);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
 }
 
 img {
@@ -30,6 +59,11 @@ button {
     font-family: inherit;
 }
 
+:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 3px;
+}
+
 /* =========================
    HEADER
 ========================= */
@@ -41,16 +75,18 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ffffff;
+    background: var(--ink);
+    color: var(--text);
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid var(--line);
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
     letter-spacing: 8px;
 }
 
@@ -61,20 +97,23 @@ button {
 }
 
 .menu a {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 500;
-    transition: 0.3s;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
 }
 
 .menu a:hover {
-    color: #e21b2d;
+    border-color: var(--amber);
 }
 
 .menu-button {
     display: none;
     border: 0;
     background: transparent;
-    font-size: 25px;
+    color: var(--text);
+    font-size: 28px;
     cursor: pointer;
 }
 
@@ -89,7 +128,7 @@ button {
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: #111111;
+    background: var(--ink);
 }
 
 .hero-image {
@@ -109,9 +148,9 @@ button {
     inset: 0;
     background: linear-gradient(
         90deg,
-        rgba(0, 0, 0, 0.78) 0%,
-        rgba(0, 0, 0, 0.48) 45%,
-        rgba(0, 0, 0, 0.05) 100%
+        rgba(13, 27, 32, 0.85) 0%,
+        rgba(13, 27, 32, 0.5) 45%,
+        rgba(13, 27, 32, 0.05) 100%
     );
 }
 
@@ -121,50 +160,63 @@ button {
     width: 50%;
     margin-left: 7%;
     color: #ffffff;
+    animation: rise 0.9s ease-out both;
 }
 
+@keyframes rise {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* Rótulos pequenos: sem caixa alta */
 .subtitle {
-    color: #e21b2d;
-    font-size: 11px;
-    letter-spacing: 4px;
-    font-weight: 700;
-    margin-bottom: 20px;
+    color: var(--amber);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+    text-transform: lowercase;
+}
+
+.subtitle::first-letter {
+    text-transform: uppercase;
 }
 
 .hero h1 {
-    font-size: clamp(50px, 6vw, 88px);
-    line-height: 0.94;
-    letter-spacing: -4px;
-    font-weight: 800;
+    font-size: clamp(50px, 7vw, 100px);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    font-weight: 700;
     margin-bottom: 30px;
 }
 
 .hero h1 span {
-    color: #e21b2d;
+    font-weight: 300;
 }
 
 .description {
     max-width: 480px;
-    color: #dddddd;
-    font-size: 15px;
-    line-height: 1.8;
+    color: #dde3de;
+    font-size: 18px;
+    line-height: 1.7;
     margin-bottom: 35px;
 }
 
 .button {
     display: inline-block;
-    padding: 16px 27px;
+    padding: 17px 32px;
     border: 0;
-    background: #e21b2d;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 700;
+    border-radius: 999px;
+    background: var(--amber);
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .button:hover {
-    background: #b91020;
+    background: var(--amber-hover);
     transform: translateY(-2px);
 }
 
@@ -175,7 +227,7 @@ button {
 
 .vehicles {
     padding: 120px 7%;
-    background: #f5f5f5;
+    background: var(--bone);
 }
 
 .section-title {
@@ -186,17 +238,22 @@ button {
 }
 
 .section-title p {
-    color: #e21b2d;
-    font-size: 11px;
-    letter-spacing: 4px;
-    font-weight: 700;
+    color: var(--muted-dark);
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: lowercase;
+}
+
+.section-title p::first-letter {
+    text-transform: uppercase;
 }
 
 .section-title h2 {
     width: 60%;
-    font-size: clamp(40px, 5vw, 65px);
+    font-size: clamp(40px, 5vw, 68px);
     line-height: 1;
-    letter-spacing: -3px;
+    letter-spacing: -0.03em;
+    font-weight: 700;
 }
 
 .vehicle-grid {
@@ -207,6 +264,8 @@ button {
 
 .vehicle-card {
     background: #ffffff;
+    border: 1px solid rgba(13, 27, 32, 0.1);
+    border-radius: 6px;
     overflow: hidden;
     transition: 0.3s;
 }
@@ -217,7 +276,7 @@ button {
 
 .vehicle-image {
     height: 330px;
-    background: #e7e7e7;
+    background: var(--tile);
     overflow: hidden;
 }
 
@@ -238,36 +297,40 @@ button {
 
 .vehicle-number {
     display: block;
-    color: #e21b2d;
-    font-size: 11px;
-    font-weight: 700;
-    margin-bottom: 12px;
+    color: var(--muted-dark);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .vehicle-info h3 {
-    font-size: 25px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     margin-bottom: 12px;
 }
 
 .vehicle-info p {
-    color: #777777;
-    font-size: 13px;
-    line-height: 1.7;
+    color: var(--muted-dark);
+    font-size: 16px;
+    line-height: 1.6;
     margin-bottom: 25px;
 }
 
 .vehicle-button {
     border: 0;
+    border-bottom: 2px solid var(--amber);
     background: transparent;
-    padding: 0;
-    color: #111111;
-    font-size: 12px;
-    font-weight: 700;
+    padding: 0 0 3px;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
+    transition: padding 0.2s;
 }
 
 .vehicle-button:hover {
-    color: #e21b2d;
+    padding-right: 8px;
 }
 
 
@@ -280,8 +343,8 @@ button {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
-    background: #111111;
-    color: #ffffff;
+    background: var(--ink);
+    color: var(--text);
 }
 
 .technology-image {
@@ -301,16 +364,17 @@ button {
 
 .technology-content h2 {
     font-size: clamp(42px, 5vw, 70px);
-    line-height: 0.98;
-    letter-spacing: -3px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
     margin-bottom: 30px;
 }
 
 .technology-content > p:not(.subtitle) {
-    color: #aaaaaa;
-    line-height: 1.8;
-    font-size: 15px;
-    max-width: 430px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 18px;
+    max-width: 440px;
     margin-bottom: 40px;
 }
 
@@ -325,16 +389,18 @@ button {
     align-items: center;
     gap: 25px;
     padding-bottom: 18px;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid var(--line);
 }
 
 .technology-items strong {
-    color: #e21b2d;
-    font-size: 12px;
+    color: var(--amber);
+    font-family: var(--font-display);
+    font-size: 16px;
 }
 
 .technology-items span {
-    font-size: 13px;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 
@@ -347,7 +413,8 @@ button {
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
     align-items: center;
-    background: #f2f2f2;
+    background: var(--ink-soft);
+    color: var(--text);
 }
 
 .charging-content {
@@ -356,16 +423,17 @@ button {
 
 .charging-content h2 {
     font-size: clamp(42px, 5vw, 68px);
-    line-height: 0.98;
-    letter-spacing: -3px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
     margin-bottom: 28px;
 }
 
 .charging-content > p:not(.subtitle) {
-    color: #666666;
-    line-height: 1.8;
-    font-size: 15px;
-    max-width: 420px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 18px;
+    max-width: 430px;
     margin-bottom: 32px;
 }
 
@@ -391,6 +459,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    background: var(--bone);
 }
 
 .about-image {
@@ -409,18 +478,23 @@ button {
     padding: 80px 12%;
 }
 
+.about-content .subtitle {
+    color: var(--muted-dark);
+}
+
 .about-content h2 {
     font-size: clamp(40px, 5vw, 65px);
     line-height: 1;
-    letter-spacing: -3px;
+    letter-spacing: -0.03em;
+    font-weight: 700;
     margin-bottom: 30px;
 }
 
 .about-content > p:not(.subtitle) {
-    color: #666666;
-    font-size: 15px;
-    line-height: 1.9;
-    max-width: 450px;
+    color: var(--muted-dark);
+    font-size: 18px;
+    line-height: 1.75;
+    max-width: 460px;
 }
 
 
@@ -430,28 +504,31 @@ button {
 
 .contact {
     padding: 130px 7%;
-    background: #e21b2d;
-    color: #ffffff;
+    background: var(--amber);
+    color: var(--ink);
     text-align: center;
 }
 
 .contact .subtitle {
-    color: #ffffff;
+    color: var(--ink);
+    opacity: 0.7;
 }
 
 .contact h2 {
-    font-size: clamp(48px, 7vw, 90px);
-    line-height: 0.95;
-    letter-spacing: -4px;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    font-weight: 700;
     margin-bottom: 40px;
 }
 
 .contact .button {
-    background: #111111;
+    background: var(--ink);
+    color: var(--text);
 }
 
 .contact .button:hover {
-    background: #333333;
+    background: #1c3640;
 }
 
 
@@ -464,19 +541,20 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #111111;
-    color: #ffffff;
+    background: var(--ink);
+    color: var(--text);
 }
 
 footer span {
-    font-size: 20px;
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
     letter-spacing: 7px;
 }
 
 footer p {
-    color: #888888;
-    font-size: 11px;
+    color: var(--muted);
+    font-size: 14px;
 }
 
 
@@ -553,8 +631,7 @@ footer p {
     }
 
     .hero h1 {
-        font-size: 50px;
-        letter-spacing: -2px;
+        font-size: 52px;
     }
 
     .vehicles {
@@ -612,6 +689,8 @@ footer p {
         gap: 15px;
     }
 }
+
+
 /* MENU MOBILE ABERTO */
 
 @media (max-width: 600px) {
@@ -626,8 +705,62 @@ footer p {
         flex-direction: column;
         align-items: center;
         gap: 25px;
-        background: #ffffff;
-        border-bottom: 1px solid #eeeeee;
+        background: var(--ink);
+        border-bottom: 1px solid var(--line);
     }
+}
 
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-content { animation: none; }
+    .button, .vehicle-button, .vehicle-card, .vehicle-image img { transition: none; }
+}
+
+
+/* =========================
+   JANELA (MODAL)
+========================= */
+
+.modal {
+    width: min(90vw, 440px);
+    margin: auto;
+    padding: 36px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--ink);
+    color: var(--text);
+}
+
+.modal::backdrop {
+    background: rgba(13, 27, 32, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.modal[open] {
+    animation: modal-in 0.25s ease-out;
+}
+
+@keyframes modal-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.modal-title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+}
+
+.modal-text {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
+    margin-bottom: 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal[open] { animation: none; }
 }
